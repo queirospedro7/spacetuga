@@ -1,0 +1,33 @@
+﻿
+> tuga@0.2.2 build
+> tsc -b && vite build
+
+[36mvite v7.3.7 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 2567 modules transformed.
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                            [39m[1m[2m  1.37 kB[22m[1m[22m[2m Ôöé gzip:   0.63 kB[22m
+[2mdist/[22m[35massets/index-CBP7ZR1a.css             [39m[1m[2m174.50 kB[22m[1m[22m[2m Ôöé gzip:  26.61 kB[22m
+[2mdist/[22m[36massets/index-DHtSqUgH.js              [39m[1m[2m  4.07 kB[22m[1m[22m[2m Ôöé gzip:   1.48 kB[22m
+[2mdist/[22m[36massets/PublicServersView-46Yl6RLi.js  [39m[1m[2m  8.23 kB[22m[1m[22m[2m Ôöé gzip:   2.77 kB[22m
+[2mdist/[22m[36massets/AdminPanel-Dzec60Mx.js         [39m[1m[2m 14.91 kB[22m[1m[22m[2m Ôöé gzip:   3.96 kB[22m
+[2mdist/[22m[36massets/vendor-framework-CJ_qsQbM.js   [39m[1m[2m 46.17 kB[22m[1m[22m[2m Ôöé gzip:  16.58 kB[22m
+[2mdist/[22m[36massets/SettingsPage-CfGFJorr.js       [39m[1m[2m 59.25 kB[22m[1m[22m[2m Ôöé gzip:  13.64 kB[22m
+[2mdist/[22m[36massets/vendor-utils-DZ4Yj5Oy.js       [39m[1m[2m 83.30 kB[22m[1m[22m[2m Ôöé gzip:  24.80 kB[22m
+[2mdist/[22m[36massets/vendor-ui-CX-DXPou.js          [39m[1m[2m152.30 kB[22m[1m[22m[2m Ôöé gzip:  50.46 kB[22m
+[2mdist/[22m[36massets/index-C9_3NWu1.js              [39m[1m[33m607.33 kB[39m[22m[2m Ôöé gzip: 169.66 kB[22m
+node.exe : [33m
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([33m:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(!) Some chunks are larger than 600 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: 
+https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via 
+build.chunkSizeWarningLimit.[39m
+[32mÔ£ô built in 12.83s[39m

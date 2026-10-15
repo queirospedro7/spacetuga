@@ -1,0 +1,26 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Server-side fixes and configuration: larger invite codes (16+ chars), default channel names ('geral'/'call'), MaxListenersExceededWarning fix, banner color field support. These are all server/index.mjs + types changes that are independent of UI work.",
+  "status": "completed",
+  "steps": [
+    "In server/index.mjs at the community:create handler (~line 1071), change invite code generation from `TUGA-${crypto.randomBytes(3).toString('hex').toUpperCase()}` (6 hex = 8 chars total) to `crypto.randomUUID().replace(/-/g,'').slice(0,16).toUpperCase()` (16 chars). This makes codes look like 'A3F8B2C91D4E7F06'.",
+    "In the same server/index.mjs community:create handler (~line 1084), change default channel names: { name: 'general', type: 'text' } → { name: 'geral', type: 'text' }, and { name: 'Lounge', type: 'voice' } → { name: 'call', type: 'voice' }.",
+    "In server/index.mjs, inside the `wss.on('connection', (ws, req) => { ... })` handler (around line 590), add `ws.setMaxListeners(20)` right after the ws parameter is available. Also add `wss.setMaxListeners(50)` right after `const wss = new WebSocketServer(...)` is created. For the HTTP response objects inside request handlers, add `res.setMaxListeners(20)` at the top of the httpServer.on('request', ...) handler.",
+    "In server/index.mjs, in the community:update handler, accept and persist a `bannerColor` field. The `safeProfileImage` function can validate it: extend it to also accept CSS hex colors (#rrggbb). Add `if (m.bannerColor !== undefined) { const color = /^#[0-9a-f]{6}$/i.test(String(m.bannerColor)) ? String(m.bannerColor) : ''; comm.bannerColor = color; changed = true; }` in the update handler.",
+    "In src/types.ts, add `bannerColor?: string` to the Community interface."
+  ],
+  "acceptance_criteria": [
+    "Running `npm run build` exits 0 with no TypeScript errors.",
+    "New server invite codes are 16 uppercase alphanumeric characters (no 'TUGA-' prefix needed, just 16 chars).",
+    "New server default channels are named 'geral' (text) and 'call' (voice).",
+    "No MaxListenersExceededWarning appears when running `node server/index.mjs` and making multiple connections.",
+    "Community type accepts bannerColor field."
+  ],
+  "verification": [
+    "npm run build",
+    "node --test scripts/audit.test.mjs"
+  ],
+  "blocked_reason": null,
+  "findings": "bannerColor field added to Community interface in src/types.ts as optional string. In server/index.mjs: invite codes now use crypto.randomUUID().replace(/-/g,'').slice(0,16).toUpperCase() producing 16-char uppercase hex codes; default channel names changed to 'geral' (text) and 'call' (voice); wss.setMaxListeners(50) added after wss creation, ws.setMaxListeners(20) added at top of connection handler, res.setMaxListeners(20) added at top of HTTP request handler; bannerColor validated via /^#[0-9a-f]{6}$/i and persisted in community:update handler. Build: tsc exit 0, vite exit 0. Tests: 1 pass, 0 fail."
+}

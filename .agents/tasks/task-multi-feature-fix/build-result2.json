@@ -1,0 +1,14 @@
+{
+  "tsc": {
+    "exit": 0,
+    "output": ""
+  },
+  "vite": {
+    "exit": 1,
+    "output": "c:\\Users\\pedro\\Desktop\\dc\\node_modules\\.bin\\vite:2\r\nbasedir=$(dirname \"$(echo \"$0\" | sed -e 's,\\\\,/,g')\")\r\n          ^^^^^^^\r\n\r\nSyntaxError: missing ) after argument list\r\n    at wrapSafe (node:internal/modules/cjs/loader:1804:18)\r\n    at Module._compile (node:internal/modules/cjs/loader:1846:20)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47\r\n\r\nNode.js v24.19.0\r\n"
+  },
+  "tests": {
+    "exit": 0,
+    "output": "✔ Permissões, privacidade, chamadas e alterações de conta (1834.6626ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1955.7741\n"
+  }
+}

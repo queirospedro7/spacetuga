@@ -1,0 +1,14 @@
+{
+  "tsc": {
+    "exit": 0,
+    "output": ""
+  },
+  "vite": {
+    "exit": 0,
+    "output": "\u001b[36mvite v7.3.7 \u001b[32mbuilding client environment for production...\u001b[36m\u001b[39m\ntransforming...\n\u001b[32m✓\u001b[39m 2567 modules transformed.\nrendering chunks...\ncomputing gzip size...\n\u001b[2mdist/\u001b[22m\u001b[32mindex.html                            \u001b[39m\u001b[1m\u001b[2m  1.37 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   0.63 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[35massets/index-BH41ZH6g.css             \u001b[39m\u001b[1m\u001b[2m175.31 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  26.72 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index-DHtSqUgH.js              \u001b[39m\u001b[1m\u001b[2m  4.07 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   1.48 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/PublicServersView-CpvJpmmn.js  \u001b[39m\u001b[1m\u001b[2m  8.23 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   2.77 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/AdminPanel-BnC_BQmY.js         \u001b[39m\u001b[1m\u001b[2m 14.91 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:   3.96 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/vendor-framework-CJ_qsQbM.js   \u001b[39m\u001b[1m\u001b[2m 46.17 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  16.58 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/SettingsPage-BPpGLrwC.js       \u001b[39m\u001b[1m\u001b[2m 64.26 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  14.50 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/vendor-utils-DZ4Yj5Oy.js       \u001b[39m\u001b[1m\u001b[2m 83.30 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  24.80 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/vendor-ui-B1-llM-B.js          \u001b[39m\u001b[1m\u001b[2m152.63 kB\u001b[22m\u001b[1m\u001b[22m\u001b[2m │ gzip:  50.58 kB\u001b[22m\n\u001b[2mdist/\u001b[22m\u001b[36massets/index-8-pN8pnq.js              \u001b[39m\u001b[1m\u001b[33m610.86 kB\u001b[39m\u001b[22m\u001b[2m │ gzip: 170.62 kB\u001b[22m\n\u001b[32m✓ built in 21.06s\u001b[39m\n"
+  },
+  "tests": {
+    "exit": 0,
+    "output": "✔ Permissões, privacidade, chamadas e alterações de conta (1869.9596ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1994.2479\n"
+  }
+}

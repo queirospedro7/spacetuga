@@ -1,0 +1,14 @@
+{
+  "name": "tuga-backend",
+  "version": "0.2.3",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "dev": "node --watch index.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.22.0"
+  }
+}

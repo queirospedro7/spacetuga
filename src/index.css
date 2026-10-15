@@ -1,0 +1,319 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face { font-family: 'Lexend'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('/fonts/lexend-latin-variable.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Lexend'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('/fonts/lexend-latin-ext-variable.woff2') format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+
+.text-primary { color: rgb(var(--primary-text-current)) !important; }
+.tuga-lightweight [class*="backdrop-blur"] { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+.tuga-background *, .tuga-background *::before, .tuga-background *::after { animation-play-state: paused !important; }
+
+.melo-compact [data-slot="button"] { min-height: 1.9rem; }
+.melo-compact .message-enter { margin-block: 0.1rem; }
+.melo-reduced-motion *, .melo-reduced-motion *::before, .melo-reduced-motion *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+
+/* Ocultar o botão nativo duplicado de mostrar password no Edge/WebView2/Tauri */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+@layer base {
+  :root {
+    --primary-text-light: 10 80 180;
+    --primary-text-dark: 115 175 255;
+    --primary-text-current: var(--primary-text-light);
+    /* Apple Light Mode - Crisp, subtle greys, deep charcoal typography, refined accent */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* Apple System Blue accent */
+    --primary: 0 0% 11%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 16%;
+
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 43%;
+
+    --accent: 0 0% 93%;
+    --accent-foreground: 0 0% 12%;
+
+    --destructive: 350 89% 60%;         /* Apple vibrant red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 89%;
+    --input: 0 0% 87%;
+    --ring: 0 0% 30%;
+
+    --radius: 0.875rem;
+
+    --sidebar-background: 0 0% 96%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 0 0% 11%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 91%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 0 0% 30%;
+  }
+
+  .dark {
+    --primary-text-current: var(--primary-text-dark);
+    /* Apple Dark Mode - Deep rich graphite/slate, avoided harsh pitch black */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 96%;
+
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 96%;
+
+    /* Apple Dark Accent Blue */
+    --primary: 0 0% 94%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 16%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 0 0% 19%;
+    --accent-foreground: 0 0% 96%;
+
+    --destructive: 350 89% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 22%;
+    --ring: 0 0% 70%;
+
+    --radius: 0.875rem;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 0 0% 94%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 0 0% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-200 antialiased;
+    font-family: "Lexend", "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom scrollbars with Apple minimalism */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(150, 150, 150, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 150, 150, 0.4);
+}
+
+/* Glassmorphism utility inspired by macOS Vibrancy */
+.glass-panel {
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Polished global styles for select dropdowns */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem 1rem;
+  padding-right: 2.25rem !important;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+select:hover {
+  border-color: hsl(var(--primary) / 0.5);
+}
+
+select:focus {
+  outline: none;
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+select option {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  padding: 0.5rem 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes message-arrive {
+  from { opacity: 0; transform: translateY(7px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.message-enter {
+  animation: message-arrive 220ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.typing-dots span {
+  display: inline-block;
+  animation: typing-bounce 900ms ease-in-out infinite;
+}
+
+.typing-dots span:nth-child(2) { animation-delay: 120ms; }
+.typing-dots span:nth-child(3) { animation-delay: 240ms; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .message-enter, .typing-dots span { animation: none; }
+}
+
+/* Otimização de CPU e RAM quando a app/aba está em segundo plano ou minimizada */
+.app-background-idle *,
+.app-background-idle *::before,
+.app-background-idle *::after {
+  animation-play-state: paused !important;
+}
+
+/* Translucência elegante quando existe fundo/papel de parede selecionado */
+html.has-custom-wallpaper #root {
+  background-color: transparent !important;
+}
+html.has-custom-wallpaper body {
+  background-color: transparent !important;
+}
+html.has-custom-wallpaper .app-main-layout {
+  background-color: hsl(var(--background) / 0.78) !important;
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+}
+html.has-custom-wallpaper .bg-background:not([data-settings-page]):not(.fixed):not([class*="fixed"]) {
+  background-color: transparent !important;
+}
+/* Ensure portal-rendered fixed panels always get a solid background */
+html.has-custom-wallpaper [data-settings-page],
+html.has-custom-wallpaper .admin-panel-root {
+  background-color: hsl(var(--background)) !important;
+}
+html.has-custom-wallpaper .app-chat-surface {
+  background-color: hsl(var(--background) / 0.72) !important;
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+}
+
+.server-folder-button { position: relative; width: 48px; height: 48px; border: 1px solid transparent; border-radius: 15px; background: hsl(var(--secondary) / .55); display: grid; place-items: center; cursor: pointer; transition: background .18s, border-color .18s; }
+.server-folder-button:hover { background: hsl(var(--secondary)); }
+.server-folder-button.is-active { border-color: var(--folder-color); background: hsl(var(--secondary)); }
+.server-folder-button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
+.server-folder-outline { position: absolute; width: 38px; height: 38px; color: var(--folder-color); fill: color-mix(in srgb, var(--folder-color) 10%, transparent); }
+.server-folder-preview { position: absolute; top: 20px; left: 14px; width: 20px; height: 16px; display: grid; grid-template-columns: repeat(2, 8px); grid-auto-rows: 7px; gap: 2px; }
+.server-folder-preview span { background: hsl(var(--card)); border-radius: 2px; overflow: hidden; display: grid; place-items: center; font-size: 5px; color: hsl(var(--foreground)); }
+.server-folder-preview img { width: 100%; height: 100%; object-fit: cover; }
+.server-folder-chevron { position: absolute; right: 2px; bottom: 3px; color: hsl(var(--muted-foreground)); }
+.server-folder-contents { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 7px 3px; background: hsl(var(--secondary) / .5); border: 1px solid hsl(var(--border)); border-radius: 18px; }
+html.has-custom-wallpaper.tuga-lightweight .app-main-layout,
+html.has-custom-wallpaper.tuga-lightweight .app-chat-surface,
+html.has-custom-wallpaper .tuga-lightweight .app-main-layout,
+html.has-custom-wallpaper .tuga-lightweight .app-chat-surface {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.tuga-mascot-animated .mascot-body { transform-origin: 60px 100px; animation: mascot-breathe 8s ease-in-out infinite; }
+.tuga-mascot-animated .mascot-eyes { transform-box: fill-box; transform-origin: center; animation: mascot-blink 7s infinite; }
+.tuga-mascot-animated .mascot-gills { transform-origin: 60px 55px; animation: mascot-gills 8s ease-in-out infinite; }
+@keyframes mascot-breathe { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-1.5px) rotate(-1deg); } }
+@keyframes mascot-blink { 0%,42%,46%,100% { transform: scaleY(1); } 44% { transform: scaleY(.08); } }
+@keyframes mascot-gills { 0%,100% { transform: scale(1); } 50% { transform: scale(1.025); } }
+@media (prefers-reduced-motion: reduce) { .tuga-mascot-animated * { animation: none !important; } }
+.melo-reduced-motion .tuga-mascot-animated * { animation: none !important; }
+.tuga-mascot-reactive .companion-body { transform-origin:60px 100px; animation:companion-idle 8s ease-in-out infinite; }
+.companion-eyes { transform-box:fill-box; transform-origin:center; }
+.tuga-mascot-reactive .companion-eyes { animation:mascot-blink 7s infinite; }
+.companion-hands { transition:transform .3s ease; }.companion-hand { transform-box:fill-box; transform-origin:center; transition:transform .3s ease; }.companion-worry { display:none; }.companion-spark { opacity:0; }
+.tuga-mascot-reactive[data-mood="privacy"] .companion-hands { transform:translateY(-37px); }
+.tuga-mascot-reactive[data-mood="privacy"] .companion-hand-left { transform:translateX(6px) rotate(4deg) scale(1.2, 1.25); }
+.tuga-mascot-reactive[data-mood="privacy"] .companion-hand-right { transform:translateX(-6px) rotate(-4deg) scale(1.2, 1.25); }
+.tuga-mascot-reactive[data-mood="privacy"] .companion-gaze { transform:translate(0, 0); }
+.tuga-mascot-reactive[data-mood="peek"] .companion-hands { transform:translateY(-24px); }
+.tuga-mascot-reactive[data-mood="typing"] .companion-eyes { transform:translateY(3px); animation:none; }
+.tuga-mascot-reactive[data-mood="typing"] .companion-spark { animation:companion-spark .35s ease-out; }
+.tuga-mascot-reactive[data-mood="loading"] .companion-body { animation:companion-wait 1.2s ease-in-out infinite; }
+.tuga-mascot-reactive[data-mood="error"] .companion-body { animation:companion-oops .4s ease; }.tuga-mascot-reactive[data-mood="error"] .companion-smile { display:none; }.tuga-mascot-reactive[data-mood="error"] .companion-worry { display:block; }
+.tuga-mascot-reactive[data-mood="greet"] .companion-hands { animation:companion-wave 1s ease; }
+@keyframes companion-idle {50%{transform:translateY(-2px)}}@keyframes companion-wait {50%{transform:rotate(3deg)}}@keyframes companion-oops {25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}@keyframes companion-spark {30%{opacity:1;transform:translateY(-3px)}100%{opacity:0;transform:translateY(-9px)}}@keyframes companion-wave {50%{transform:translateY(-9px)}}
+@media(prefers-reduced-motion:reduce){.tuga-mascot-reactive *{animation:none!important;transition:none!important}}.melo-reduced-motion .tuga-mascot-reactive *{animation:none!important;transition:none!important}
+.tuga-mascot-reactive .companion-leg-left { transform-origin:44px 72px; animation:companion-leg-left 2.4s ease-in-out infinite; }
+.tuga-mascot-reactive .companion-leg-right { transform-origin:76px 72px; animation:companion-leg-right 2.4s ease-in-out infinite; }
+@keyframes companion-leg-left {0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+@keyframes companion-leg-right {0%,100%{transform:rotate(12deg)}50%{transform:rotate(-12deg)}}
+@media(prefers-reduced-motion:reduce){.tuga-mascot-reactive *{animation:none!important}}.melo-reduced-motion .tuga-mascot-reactive *{animation:none!important}
+.tuga-mascot-reactive .labrador-tail { transform-origin:121px 78px; animation:labrador-tail-wag 1.8s ease-in-out infinite; }
+@keyframes labrador-tail-wag {0%,100%{transform:rotate(-12deg)}50%{transform:rotate(15deg)}}
+@media(prefers-reduced-motion:reduce){.tuga-mascot-reactive *{animation:none!important}}.melo-reduced-motion .tuga-mascot-reactive *{animation:none!important}
+.tuga-mascot-reactive .icon-leg-left { transform-origin:44px 74px; animation:icon-step-left 5s ease-in-out infinite; }
+.tuga-mascot-reactive .icon-leg-right { transform-origin:76px 74px; animation:icon-step-right 5s ease-in-out infinite; }
+@keyframes icon-step-left {0%,35%,70%,100%{transform:rotate(0)}45%{transform:rotate(8deg)}55%{transform:rotate(-5deg)}}
+@keyframes icon-step-right {0%,35%,70%,100%{transform:rotate(0)}45%{transform:rotate(-5deg)}55%{transform:rotate(8deg)}}
+@media(prefers-reduced-motion:reduce){.tuga-mascot-reactive *{animation:none!important}}.melo-reduced-motion .tuga-mascot-reactive *{animation:none!important}
+.companion-gaze { transform:translate(var(--gaze-x,0px),var(--gaze-y,0px)); transition:transform .28s ease; }
+.tuga-mascot-reactive .companion-body { transition:transform .35s ease; }
+.tuga-mascot-reactive:is([data-mood="typing"],[data-mood="privacy"],[data-mood="peek"]) .companion-body { animation:none; transform:rotate(var(--pose-angle,0deg)); }
+.tuga-mascot-reactive[data-mood="typing"] .icon-leg-left { animation:mascot-thinking-step 2s ease-in-out infinite; }
+.tuga-mascot-reactive[data-mood="greet"] .companion-body { animation:mascot-greeting-bounce .7s ease; }
+.tuga-mascot-reactive[data-mood="loading"] .companion-body { animation:mascot-patient-wait 1.6s ease-in-out infinite; }
+@keyframes mascot-thinking-step {50%{transform:rotate(15deg)}}
+@keyframes mascot-greeting-bounce {35%{transform:translateY(-8px) rotate(-4deg)}70%{transform:translateY(0) rotate(3deg)}}
+@keyframes mascot-patient-wait {0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(4deg) translateY(-3px)}}
+@media(prefers-reduced-motion:reduce){.tuga-mascot-reactive *{animation:none!important;transition:none!important}}.melo-reduced-motion .tuga-mascot-reactive *{animation:none!important;transition:none!important}
+
+
+
+
