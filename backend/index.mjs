@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = process.env.TUGA_DATA_FILE || process.env.VEYA_DATA_FILE || process.env.NEBULA_DATA_FILE || path.join(__dirname, "data.json");
-const PORT = process.env.TUGA_PORT || process.env.VEYA_PORT || process.env.NEBULA_PORT || 8787;
+const PORT = process.env.PORT || process.env.TUGA_PORT || process.env.VEYA_PORT || process.env.NEBULA_PORT || 8787;
 const HOST = process.env.TUGA_HOST || process.env.VEYA_HOST || process.env.NEBULA_HOST || "0.0.0.0";
 const UPLOAD_DIR = `${DATA_FILE}.uploads`;
 const JWT_ISSUERS = new Set(["tuga", "veya"]);
@@ -18,11 +18,12 @@ const MAX_MSG_LEN = 4000;
 const configuredOrigins = new Set((process.env.TUGA_ALLOWED_ORIGINS || '').split(',').map((origin) => origin.trim()).filter(Boolean));
 function allowedOrigin(origin, requestHost) {
   if (!origin) return true;
-  if (configuredOrigins.has(origin)) return true;
+  if (configuredOrigins.has('*') || configuredOrigins.has(origin)) return true;
   try {
     const parsed = new URL(origin);
     if (!['http:', 'https:', 'tauri:'].includes(parsed.protocol)) return false;
     if (parsed.protocol === 'tauri:' || parsed.hostname === 'tauri.localhost') return true;
+    if (configuredOrigins.size === 0) return true;
     const loopbacks = new Set(['localhost', '127.0.0.1', '[::1]', 'tauri.localhost']);
     return parsed.hostname === requestHost || (loopbacks.has(parsed.hostname) && loopbacks.has(requestHost));
   } catch { return false; }
